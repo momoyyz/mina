@@ -35,7 +35,7 @@ public class MinaClient {
         ConnectFuture future = connector.connect(new InetSocketAddress(host,port));
         future.awaitUninterruptibly();// 等待我们的连接
         session = future.getSession();
-        session.write("你好!Hello");// 写入数据,发往服务端
+        session.write("-------------------------");// 写入数据,发往服务端
         session.getCloseFuture().awaitUninterruptibly();// 等待关闭连接
         connector.dispose();// 释放资源
     }
