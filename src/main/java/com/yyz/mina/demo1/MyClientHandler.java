@@ -19,8 +19,8 @@ public class MyClientHandler extends IoHandlerAdapter{
             throws Exception {
         String msg = (String)message;
         System.out.println("客户端接收到数据：" + msg);
-       // Date date = new Date();
-      //  session.write("来自客户端的数据"); // 用于写入数据并发送
+        Date date = new Date();
+        session.write("来自客户端的数据"); // 用于写入数据并发送
     }
 
     @Override

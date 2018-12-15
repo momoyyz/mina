@@ -19,7 +19,7 @@ public class MyHandler extends IoHandlerAdapter{
         String msg = (String)message;
         System.out.println("服务端接收到数据：" + msg);
         //Date date = new Date();
-        session.write("来自服务端的数据"); // 用于写入数据并发送
+       // session.write("来自服务端的数据"); // 用于写入数据并发送
     }
 
     @Override
