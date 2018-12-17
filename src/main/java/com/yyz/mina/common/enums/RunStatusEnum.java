@@ -10,7 +10,8 @@ public enum RunStatusEnum {
     TEXT_ERROR("100004", "测试失败!", false),
     RETURN_DATA_ERROR("100005","返回数据失败",false),
     CLIENT_NUM_ERROR("100006","计算客户端数量失败",false),
-    SEND_MESSAGE_ERROR("100006","服务端发送数据失败",false)
+    SEND_MESSAGE_ERROR("100006","服务端发送数据失败",false),
+    ARG_NULL_ERROR("100007","入参不能为空",false)
 
     ;
 

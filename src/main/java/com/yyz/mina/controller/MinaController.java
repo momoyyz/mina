@@ -9,15 +9,16 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
 @Api("shine测试接口")
 public class MinaController {
+
     @Autowired
     MinaServer minaServer;
 
@@ -33,12 +34,18 @@ public class MinaController {
     @ApiImplicitParam(name = "port",value = "端口")
     public ResultResponse<Boolean> openServer(Integer port) {
         System.out.println("*****服务端准备开启*****");
-
         ResultResponse<Boolean> resultResponse=new ResultResponse<>();
         try {
-            resultResponse.setSuccessData(minaServer.openServer(port));
+            /*
+             *入参检查
+             */
+            if(!StringUtils.isEmpty(port)){
+                resultResponse.setSuccessData(minaServer.openServer(port));
+            }else{
+                resultResponse.setError(RunStatusEnum.ARG_NULL_ERROR);
+                log.error(RunStatusEnum.ARG_NULL_ERROR.getMsg());
+            }
         }catch (Exception e){
-            resultResponse.setError(RunStatusEnum.SERVER_ERROR);
             log.error(RunStatusEnum.SERVER_ERROR.getMsg(),e);
         }
         return resultResponse;
@@ -59,7 +66,16 @@ public class MinaController {
         System.out.println("*****客户端准备开启*****");
         ResultResponse<Boolean> resultResponse=new ResultResponse<>();
         try {
-            resultResponse.setSuccessData(minaServer.openClient(host,port));
+            /*
+             *入参检查
+             */
+            if(!StringUtils.isEmpty(port)&&!StringUtils.isEmpty(host)){
+                resultResponse.setSuccessData(minaServer.openClient(host,port));
+            }else{
+                resultResponse.setError(RunStatusEnum.ARG_NULL_ERROR);
+                log.error(RunStatusEnum.ARG_NULL_ERROR.getMsg());
+            }
+
         }catch (Exception e){
             resultResponse.setError(RunStatusEnum.CLIENT_ERROR);
             log.error(RunStatusEnum.CLIENT_ERROR.getMsg(),e);
@@ -82,7 +98,15 @@ public class MinaController {
         System.out.println("*****开始测试 ->"+testContent+"*****");
         ResultResponse<Boolean> resultResponse=new ResultResponse<>();
         try {
-            resultResponse.setSuccessData( minaServer.sendConMessage(message));
+            /*
+            *入参检查
+             */
+            if(!StringUtils.isEmpty(message)&&!StringUtils.isEmpty(testContent)){
+                resultResponse.setSuccessData( minaServer.sendConMessage(message));
+            }else{
+                resultResponse.setError(RunStatusEnum.ARG_NULL_ERROR);
+                log.error(RunStatusEnum.ARG_NULL_ERROR.getMsg());
+            }
         }catch (Exception e){
             resultResponse.setError(RunStatusEnum.SEND_MESSAGE_ERROR);
             log.error(RunStatusEnum.SEND_MESSAGE_ERROR.getMsg(),e);
