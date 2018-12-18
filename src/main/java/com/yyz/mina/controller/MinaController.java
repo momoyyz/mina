@@ -36,9 +36,7 @@ public class MinaController {
         System.out.println("*****服务端准备开启*****");
         ResultResponse<Boolean> resultResponse=new ResultResponse<>();
         try {
-            /*
-             *入参检查
-             */
+            //入参检查
             if(!StringUtils.isEmpty(port)){
                 resultResponse.setSuccessData(minaServer.openServer(port));
             }else{
@@ -66,9 +64,7 @@ public class MinaController {
         System.out.println("*****客户端准备开启*****");
         ResultResponse<Boolean> resultResponse=new ResultResponse<>();
         try {
-            /*
-             *入参检查
-             */
+            //入参检查
             if(!StringUtils.isEmpty(port)&&!StringUtils.isEmpty(host)){
                 resultResponse.setSuccessData(minaServer.openClient(host,port));
             }else{
@@ -98,9 +94,7 @@ public class MinaController {
         System.out.println("*****开始测试 ->"+testContent+"*****");
         ResultResponse<Boolean> resultResponse=new ResultResponse<>();
         try {
-            /*
-            *入参检查
-             */
+            //入参检查
             if(!StringUtils.isEmpty(message)&&!StringUtils.isEmpty(testContent)){
                 resultResponse.setSuccessData( minaServer.sendConMessage(message));
             }else{

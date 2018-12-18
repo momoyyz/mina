@@ -5,22 +5,25 @@ import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 
-import java.util.Date;
-
 public class ClientHandler extends IoHandlerAdapter{
 
     @Override
     public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
-
         System.out.println("客户端连接出现异常");
     }
 
+    /**
+     * 接收消息与应答回馈
+     * @param session
+     * @param message
+     * @throws Exception
+     */
     @Override
     public void messageReceived(IoSession session, Object message)
             throws Exception {
         String msg = (String)message;
         System.out.println("客户端接收到数据：" + msg);
-        //Date date = new Date();
+        //应答消息
         session.write("\"content\": {\"header\":{\"action\":\" shutdownVMFinish \"}}"); // 用于写入数据并发送
     }
 

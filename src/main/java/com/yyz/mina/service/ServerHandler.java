@@ -5,12 +5,23 @@ import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 
 public class ServerHandler extends IoHandlerAdapter{
-
+    /**
+     * 异常
+     * @param session
+     * @param cause
+     * @throws Exception
+     */
     @Override
     public void exceptionCaught(IoSession session, Throwable cause) throws Exception {
         System.out.println("服务端连接出现异常");
     }
 
+    /**
+     * 服务端接收数据
+     * @param session
+     * @param message
+     * @throws Exception
+     */
     @Override
     public void messageReceived(IoSession session, Object message)
             throws Exception {
