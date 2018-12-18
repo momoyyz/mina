@@ -3,10 +3,6 @@ package com.yyz.mina.controller;
 import com.yyz.mina.common.enums.RunStatusEnum;
 import com.yyz.mina.controller.vo.ResultResponse;
 import com.yyz.mina.service.MinaServer;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -16,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@Api("shine测试接口")
 public class MinaController {
 
     @Autowired
@@ -30,8 +25,6 @@ public class MinaController {
      * @return
      */
     @GetMapping("openServer")
-    @ApiOperation("启动服务器接口")
-    @ApiImplicitParam(name = "port",value = "端口")
     public ResultResponse<Boolean> openServer(Integer port) {
         System.out.println("*****服务端准备开启*****");
         ResultResponse<Boolean> resultResponse=new ResultResponse<>();
@@ -57,9 +50,6 @@ public class MinaController {
      * @return
      */
     @GetMapping("openClient")
-    @ApiOperation("启动客户端接口")
-    @ApiImplicitParams({@ApiImplicitParam(name = "host",value = "地址"),
-            @ApiImplicitParam(name = "port",value = "端口")})
     public ResultResponse<Boolean> openClient(String host, Integer port) {
         System.out.println("*****客户端准备开启*****");
         ResultResponse<Boolean> resultResponse=new ResultResponse<>();
@@ -87,9 +77,6 @@ public class MinaController {
      * @throws InterruptedException
      */
     @PostMapping("sendMessage")
-    @ApiOperation("测试发送消息接口")
-    @ApiImplicitParams({@ApiImplicitParam(name = "message",value = "报文"),
-                      @ApiImplicitParam(name = "testContent",value = "测试说明")})
     public  ResultResponse<Boolean> sendMessage(String message,String testContent) {
         System.out.println("*****开始测试 ->"+testContent+"*****");
         ResultResponse<Boolean> resultResponse=new ResultResponse<>();
@@ -113,7 +100,6 @@ public class MinaController {
      * @return
      */
     @GetMapping("returnMessage")
-    @ApiOperation("测试返回应答消息接口")
     public  ResultResponse<String> returnMessage(){
         ResultResponse<String> resultResponse=new ResultResponse<>();
         try {
@@ -131,7 +117,6 @@ public class MinaController {
      * 获取客户数量
      * @return
      */
-    @ApiOperation("获取用户数量接口")
     @GetMapping("getClientNum")
     public  ResultResponse<Integer> getClientNum(){
         ResultResponse<Integer> resultResponse=new ResultResponse<>();
